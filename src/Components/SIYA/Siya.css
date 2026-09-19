@@ -1,0 +1,99 @@
+.siya-container {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  z-index: 9999;
+}
+
+.siya-toggle {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: 1px solid #d4af37;
+  background: #111;
+  color: #d4af37;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.siya-panel {
+  position: absolute;
+  right: 0;
+  bottom: 70px;
+  width: 340px;
+  height: 450px;
+  background: #111;
+  border: 1px solid #d4af37;
+  border-radius: 12px;
+  color: white;
+  overflow: hidden;
+}
+
+.siya-header {
+  padding: 15px;
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.siya-header small {
+  display: block;
+  color: #888;
+  margin-top: 4px;
+}
+
+.siya-header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.siya-messages {
+  height: 335px;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.siya-message {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  max-width: 85%;
+}
+
+.siya-message.bot {
+  background: #222;
+}
+
+.siya-message.user {
+  background: #d4af37;
+  color: #111;
+  margin-left: auto;
+}
+
+.siya-input {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #333;
+  gap: 8px;
+}
+
+.siya-input input {
+  flex: 1;
+  padding: 10px;
+  background: #222;
+  border: 1px solid #444;
+  color: white;
+  border-radius: 6px;
+}
+
+.siya-input button {
+  padding: 10px 14px;
+  background: #d4af37;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
