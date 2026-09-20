@@ -5,52 +5,79 @@
   z-index: 9999;
 }
 
+/* SIYA button */
 .siya-toggle {
   width: 55px;
   height: 55px;
   border-radius: 50%;
-  border: 1px solid #d4af37;
-  background: #111;
-  color: #d4af37;
-  font-size: 20px;
+  border: 1px solid var(--cyan);
+  background: var(--bg-secondary);
+  color: var(--cyan);
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
+  transition: 0.2s ease;
 }
 
+.siya-toggle:hover {
+  background: var(--signal-blue);
+  color: var(--text-primary);
+}
+
+/* Chat panel */
 .siya-panel {
   position: absolute;
   right: 0;
   bottom: 70px;
   width: 340px;
   height: 450px;
-  background: #111;
-  border: 1px solid #d4af37;
-  border-radius: 12px;
-  color: white;
+
+  background: var(--bg-primary);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+
+  color: var(--text-primary);
   overflow: hidden;
+
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
 }
 
+/* Header */
 .siya-header {
   padding: 15px;
-  border-bottom: 1px solid #333;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-soft);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.siya-header strong {
+  font-size: 14px;
+  letter-spacing: 0.03em;
+}
+
 .siya-header small {
   display: block;
-  color: #888;
+  color: var(--text-muted);
+  font-size: 11px;
   margin-top: 4px;
 }
 
 .siya-header button {
   background: none;
   border: none;
-  color: white;
+  color: var(--text-muted);
   font-size: 22px;
   cursor: pointer;
 }
 
+.siya-header button:hover {
+  color: var(--cyan);
+}
+
+/* Messages */
 .siya-messages {
   height: 335px;
   padding: 15px;
@@ -58,42 +85,67 @@
 }
 
 .siya-message {
-  padding: 10px;
+  padding: 10px 12px;
   margin-bottom: 10px;
-  border-radius: 8px;
+  border-radius: 4px;
   max-width: 85%;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .siya-message.bot {
-  background: #222;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-soft);
 }
 
 .siya-message.user {
-  background: #d4af37;
-  color: #111;
+  background: var(--signal-blue);
+  color: #06101d;
   margin-left: auto;
 }
 
+/* Input */
 .siya-input {
   display: flex;
   padding: 10px;
-  border-top: 1px solid #333;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-soft);
   gap: 8px;
 }
 
 .siya-input input {
   flex: 1;
   padding: 10px;
-  background: #222;
-  border: 1px solid #444;
-  color: white;
-  border-radius: 6px;
+
+  background: var(--bg-primary);
+  border: 1px solid var(--border-soft);
+  color: var(--text-primary);
+
+  border-radius: 3px;
+  outline: none;
+}
+
+.siya-input input:focus {
+  border-color: var(--cyan);
+}
+
+.siya-input input::placeholder {
+  color: var(--text-muted);
 }
 
 .siya-input button {
   padding: 10px 14px;
-  background: #d4af37;
+
+  background: var(--signal-blue);
+  color: #06101d;
+
   border: none;
-  border-radius: 6px;
+  border-radius: 3px;
+
+  font-weight: 600;
   cursor: pointer;
+}
+
+.siya-input button:hover {
+  background: var(--cyan);
 }

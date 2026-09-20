@@ -12,8 +12,7 @@ function Siya() {
   ]);
   const [loading, setLoading] = useState(false);
 
-  const SERVER =
-    "https://leg-faster-arising-glasgow.trycloudflare.com/api";
+  const SERVER = "http://127.0.0.1:5000/api/chat";
 
   const sendMessage = async () => {
     const text = input.trim();
