@@ -43,22 +43,42 @@
 
 .conversation__form {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.conversation__form input {
-  flex: 1;
+.conversation__form input,
+.conversation__form textarea {
+  width: 100%;
+  box-sizing: border-box;
   background: rgba(232, 238, 245, 0.05);
   border: 1px solid var(--border-soft);
   border-radius: 4px;
   padding: 14px 16px;
   color: var(--text-primary);
   font-size: 14px;
+  font-family: inherit;
 }
 
-.conversation__form input:focus {
+.conversation__form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.conversation__form input::placeholder,
+.conversation__form textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.conversation__form input:focus,
+.conversation__form textarea:focus {
   outline: none;
   border-color: var(--cyan);
+}
+
+.conversation__form .btn {
+  align-self: flex-start;
+  margin-top: 8px;
 }
 
 .conversation__confirm p {
@@ -72,6 +92,7 @@
   color: var(--cyan);
   padding: 10px 20px;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 @media (max-width: 560px) {
@@ -79,7 +100,7 @@
     padding: 40px 24px;
   }
 
-  .conversation__form {
-    flex-direction: column;
+  .conversation__form .btn {
+    width: 100%;
   }
 }
