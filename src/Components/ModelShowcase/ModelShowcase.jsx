@@ -36,7 +36,7 @@ const details = [
 const sceneImages = {
   home: '/images/vajra-home.jpeg',
   office: '/images/vajra-office.jpeg',
-  travel: '/images/vajra.png',
+  travel: '/images/vajra-travel.jpeg',
 };
 export default function ModelShowcase() {
   const [active, setActive] = useState(details[0].id);
