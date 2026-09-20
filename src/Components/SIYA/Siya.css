@@ -1,10 +1,9 @@
 .siya-container {
   position: fixed;
-  right: 25px;
-  bottom: 25px;
+  right:50px;
+  bottom: 135px;
   z-index: 9999;
 }
-
 /* SIYA button */
 .siya-toggle {
   width: 55px;
@@ -17,6 +16,8 @@
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s ease;
+
+  animation: siyaBlink 2s ease-in-out infinite;
 }
 
 .siya-toggle:hover {
@@ -148,4 +149,15 @@
 
 .siya-input button:hover {
   background: var(--cyan);
+}
+@keyframes siyaBlink {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 rgba(0, 255, 255, 0);
+  }
+
+  50% {
+    opacity: 0.65;
+    box-shadow: 0 0 15px var(--cyan);
+  }
 }
