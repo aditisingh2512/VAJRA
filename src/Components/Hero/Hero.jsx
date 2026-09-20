@@ -23,11 +23,11 @@ export default function Hero() {
           <span className="hero__status-dot" />
           System online
         </p>
+        <h1 className="hero__title"> 
+  VAJRA is a security unit that watches the spaces you can&rsquo;t. 
+</h1>
 
-        <h1 className="hero__title">
-          VAJRA is a security unit that watches the spaces you can&rsquo;t.
-        </h1>
-
+       
         <p className="hero__description">
           It moves through a home, an office or a route on its own, keeping
           watch through onboard cameras and sensors, and flags what it sees
@@ -38,6 +38,22 @@ export default function Hero() {
           <a href="#models" className="btn btn--primary">See the unit</a>
           <a href="#system" className="btn btn--ghost">How it operates</a>
         </div>
+        <div className="hero__stats">
+  <div className="hero__stat">
+    <strong>24/7</strong>
+    <span>Monitoring</span>
+  </div>
+
+  <div className="hero__stat">
+    <strong>AI</strong>
+    <span>Powered Detection</span>
+  </div>
+
+  <div className="hero__stat">
+    <strong>360°</strong>
+    <span>Autonomous Awareness</span>
+  </div>
+</div>
       </div>
 
       <a href="#models" className="hero__scroll">
