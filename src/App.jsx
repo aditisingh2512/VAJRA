@@ -11,7 +11,7 @@ import Deployment from './Components/Deployment/Deployment';
 import Conversation from './Components/Conversation/Conversation';
 import FinalCTA from './Components/FinalCTA/FinalCTA';
 import Footer from './Components/Footer/Footer';
-import PrivacyPolicy from './Pages/PrivacyPolicy/PrivacyPolicy';
+import PrivacyPolicy from './Pages/PrivacyPolicy/PrivacyPage.jsx';
 import Terms from './Pages/Terms/Terms';
 import SIYA from './Components/SIYA/Siya';
 import './App.css';
