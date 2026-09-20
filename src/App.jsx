@@ -13,6 +13,7 @@ import FinalCTA from './Components/FinalCTA/FinalCTA';
 import Footer from './Components/Footer/Footer';
 import PrivacyPolicy from './Pages/PrivacyPolicy/PrivacyPolicy';
 import Terms from './Pages/Terms/Terms';
+import SIYA from './Components/SIYA/Siya';
 import './App.css';
 
 function Home() {
@@ -28,6 +29,7 @@ function Home() {
       <Conversation />
       <FinalCTA />
       <Footer />
+      <SIYA />
     </>
   );
 }
