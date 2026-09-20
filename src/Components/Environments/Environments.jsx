@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Environments.css';
 
 const environments = [
@@ -25,8 +26,8 @@ const environments = [
 function EnvironmentCard({ env }) {
   const [failed, setFailed] = useState(false);
 
-  return (
-    <article className="env-card">
+return (
+  <Link to={`/environments/${env.key}`} className="env-card">
       <div className="env-card__media">
         {!failed ? (
           <img
@@ -42,7 +43,7 @@ function EnvironmentCard({ env }) {
         <h3>{env.name}</h3>
         <p>{env.tagline}</p>
       </div>
-    </article>
+    </Link>
   );
 }
 

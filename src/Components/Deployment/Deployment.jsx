@@ -19,7 +19,7 @@ export default function Deployment() {
           </div>
 
           <div className="deployment__media">
-            <img src="/images/vajra-office.jpeg" alt="VAJRA unit moving through an office corridor" />
+            <img src="/images/vajra-all.jpeg" alt="VAJRA unit moving through an office corridor" />
           </div>
         </div>
 

@@ -14,6 +14,16 @@
   border-radius: 6px;
   overflow: hidden;
   background: var(--bg-deep);
+  color: inherit;
+  text-decoration: none;
+   transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.env-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--cyan);
 }
 
 .env-card__media {
@@ -25,6 +35,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.env-card:hover .env-card__media img {
+  transform: scale(1.04);
 }
 
 .env-card__placeholder {
