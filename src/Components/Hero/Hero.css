@@ -53,6 +53,8 @@
   z-index: 2;
   padding-bottom: 120px;
   max-width: 760px;
+  margin-right: auto;
+  margin-left: 0;
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.9s ease 0.3s, transform 0.9s ease 0.3s;
