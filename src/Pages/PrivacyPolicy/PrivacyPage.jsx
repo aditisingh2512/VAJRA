@@ -1,6 +1,6 @@
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
-import './PrivacyPolicy.css';
+import '../Privacypolicy/PrivacyPolicy.css';
 
 export default function PrivacyPolicy() {
   return (
