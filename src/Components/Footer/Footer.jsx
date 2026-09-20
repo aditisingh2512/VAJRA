@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="wrap footer__inner">
         <div className="footer__brand">
           <span className="footer__logo">VAJRA</span>
-          <p>A project by SIFS Group.</p>
+          <p>A project by TIU Group.</p>
         </div>
 
         <nav className="footer__nav" aria-label="Footer">
@@ -26,7 +26,7 @@ export default function Footer() {
       </div>
 
       <div className="wrap footer__bottom">
-        <p>&copy; {new Date().getFullYear()} VAJRA, SIFS Group. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} VAJRA, TIU Group. All rights reserved.</p>
       </div>
     </footer>
   );

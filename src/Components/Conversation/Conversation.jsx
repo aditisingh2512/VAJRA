@@ -2,15 +2,50 @@ import { useState } from 'react';
 import './Conversation.css';
 
 export default function Conversation() {
-  const [value, setValue] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    question: '',
+  });
+
   const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!value.trim()) return;
-    // No backend is connected yet. Wire this handler to your API
-    // endpoint when one is available, in place of this local state update.
+
+    if (
+      !formData.name.trim() ||
+      !formData.phone.trim() ||
+      !formData.email.trim() ||
+      !formData.question.trim()
+    ) {
+      return;
+    }
+
+    // Backend will be connected here later.
+    // The complete form data will be sent to the API at that stage.
+
     setSubmitted(true);
+  };
+
+  const handleReset = () => {
+    setSubmitted(false);
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      question: '',
+    });
   };
 
   return (
@@ -23,12 +58,18 @@ export default function Conversation() {
           </div>
 
           <h2>Ask VAJRA a question.</h2>
-          <p>Send a message and it will reach our team directly.</p>
+
+          <p>
+            Send your details and your question. Our team will get back to you.
+          </p>
 
           {submitted ? (
             <div className="conversation__confirm">
-              <p>Received. Someone from the team will follow up.</p>
-              <button onClick={() => { setSubmitted(false); setValue(''); }}>
+              <p>
+                Received. Someone from the team will follow up.
+              </p>
+
+              <button onClick={handleReset}>
                 Send another
               </button>
             </div>
@@ -36,12 +77,47 @@ export default function Conversation() {
             <form className="conversation__form" onSubmit={handleSubmit}>
               <input
                 type="text"
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Your name"
+                aria-label="Your name"
+                required
+              />
+
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Phone number, e.g. +91 9876543210"
+                aria-label="Phone number"
+                required
+              />
+
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email address"
+                aria-label="Email address"
+                required
+              />
+
+              <textarea
+                name="question"
+                value={formData.question}
+                onChange={handleChange}
                 placeholder="Ask about deployment, integration, or the unit itself..."
                 aria-label="Ask VAJRA a question"
+                rows="5"
+                required
               />
-              <button type="submit" className="btn btn--primary">Send</button>
+
+              <button type="submit" className="btn btn--primary">
+                Send
+              </button>
             </form>
           )}
         </div>
