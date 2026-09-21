@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useState, useEffect, useRef } from "react";
 import "./Siya.css";
 
 function Siya() {
@@ -11,8 +12,96 @@ function Siya() {
     }
   ]);
   const [loading, setLoading] = useState(false);
+  const [listening, setListening] = useState(false);
+  const [voiceError, setVoiceError] = useState("");
+
+  const recognitionRef = useRef(null);
 
   const SERVER = "http://127.0.0.1:5000/api/chat";
+
+  // Setup browser speech recognition
+  useEffect(() => {
+    const SpeechRecognition =
+      window.SpeechRecognition ||
+      window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      setVoiceError(
+        "Voice input is not supported in this browser. Try Chrome."
+      );
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+
+    // Language used for speech recognition
+    recognition.lang = "en-IN";
+
+    // Show partial speech as the user speaks
+    recognition.interimResults = true;
+    recognition.continuous = false;
+
+    recognition.onstart = () => {
+      setListening(true);
+      setVoiceError("");
+    };
+
+    recognition.onresult = (event) => {
+      let transcript = "";
+
+      for (
+        let i = 0;
+        i < event.results.length;
+        i++
+      ) {
+        transcript += event.results[i][0].transcript;
+      }
+
+      setInput(transcript);
+    };
+
+    recognition.onerror = (event) => {
+      setVoiceError(
+        event.error === "not-allowed"
+          ? "Please allow microphone access."
+          : `Voice input error: ${event.error}`
+      );
+    };
+
+    recognition.onend = () => {
+      setListening(false);
+    };
+
+    recognitionRef.current = recognition;
+
+    return () => {
+      recognition.stop();
+    };
+  }, []);
+
+  // Start or stop voice recognition
+  const handleVoiceInput = () => {
+    const recognition = recognitionRef.current;
+
+    if (!recognition) {
+      setVoiceError(
+        "Voice input is not available in this browser."
+      );
+      return;
+    }
+
+    if (listening) {
+      recognition.stop();
+    } else {
+      try {
+        recognition.start();
+      } catch (error) {
+        setVoiceError(
+          "Could not start microphone. Please try again."
+        );
+      }
+    }
+  };
 
   const sendMessage = async () => {
     const text = input.trim();
@@ -38,13 +127,20 @@ function Siya() {
         })
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(
+          data.error || `Request failed (${response.status})`
+        );
+      }
 
       setMessages((prev) => [
         ...prev,
         {
           type: "bot",
-          text: data.content || "Sorry, I couldn't get a response."
+          text: data.content ||
+            "Sorry, I couldn't get a response."
         }
       ]);
     } catch (error) {
@@ -52,7 +148,8 @@ function Siya() {
         ...prev,
         {
           type: "bot",
-          text: "❌ Unable to connect to SIYA right now."
+          text: error.message ||
+            "❌ Unable to connect to SIYA right now."
         }
       ]);
     } finally {
@@ -62,7 +159,6 @@ function Siya() {
 
   return (
     <div className="siya-container">
-
       <button
         className="siya-toggle"
         onClick={() => setOpen(!open)}
@@ -72,7 +168,6 @@ function Siya() {
 
       {open && (
         <div className="siya-panel">
-
           <div className="siya-header">
             <div>
               <strong>VAJRA // SIYA AI</strong>
@@ -101,6 +196,12 @@ function Siya() {
             )}
           </div>
 
+          {voiceError && (
+            <div className="siya-voice-error">
+              {voiceError}
+            </div>
+          )}
+
           <div className="siya-input">
             <input
               type="text"
@@ -114,14 +215,30 @@ function Siya() {
               placeholder="Ask SIYA..."
             />
 
-            <button onClick={sendMessage}>
-              Send
+            <button
+              type="button"
+              onClick={handleVoiceInput}
+              disabled={loading}
+              title="Voice input"
+            >
+              {listening ? "⏹️" : "🎙️"}
+            </button>
+
+            <button
+              onClick={sendMessage}
+              disabled={loading}
+            >
+              {loading ? "Sending..." : "Send"}
             </button>
           </div>
 
+          {listening && (
+            <small className="siya-listening">
+              🎙️ Listening... Speak now
+            </small>
+          )}
         </div>
       )}
-
     </div>
   );
 }
