@@ -161,3 +161,27 @@
     box-shadow: 0 0 15px var(--cyan);
   }
 }
+
+
+
+.siya-voice-error {
+  color: #ff7777;
+  font-size: 12px;
+  padding: 6px 10px;
+}
+
+.siya-listening {
+  display: block;
+  padding: 6px 10px;
+  color: #00e5ff;
+  font-size: 12px;
+}
+
+.siya-input button {
+  cursor: pointer;
+}
+
+.siya-input button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
