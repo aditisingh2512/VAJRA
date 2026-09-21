@@ -5,7 +5,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Hero from './Components/Hero/Hero';
 import ModelShowcase from './Components/ModelShowcase/ModelShowcase';
 import About from './Components/About/About';
-import Capabilities from './Components/Capabilities/Capabilities';
+
 import System from './Components/System/System';
 import Environments from './Components/Environments/Environments';
 import Deployment from './Components/Deployment/Deployment';
@@ -48,7 +48,7 @@ function Home() {
       <Hero />
       <ModelShowcase />
       <About />
-      <Capabilities />
+     
       <System />
       <Environments />
       <Deployment />

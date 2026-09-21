@@ -12,33 +12,62 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [exploreOpen, setExploreOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
   const location = useLocation();
   const onHome = location.pathname === '/';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
+
     window.addEventListener('scroll', onScroll);
+
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
     <header className={`navbar ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="navbar__inner wrap">
-        <Link to="/" className="navbar__logo">VAJRA</Link>
+
+        <Link to="/" className="navbar__logo">
+          VAJRA
+        </Link>
 
         {onHome && (
-          <nav className="navbar__links" aria-label="Primary">
-            {links.map((link) => (
-              <a key={link.href} href={link.href}>{link.label}</a>
-            ))}
-          </nav>
+          <div className="navbar__navigation">
+
+            <button
+              className={`navbar__explore ${exploreOpen ? 'is-active' : ''}`}
+              onClick={() => setExploreOpen((v) => !v)}
+              type="button"
+            >
+              Explore <span>→</span>
+            </button>
+
+            <nav
+              className={`navbar__links ${exploreOpen ? 'is-visible' : ''}`}
+              aria-label="Primary"
+            >
+              {links.map((link) => (
+                <a key={link.href} href={link.href}>
+                  {link.label}
+                  <span className="navbar__link-arrow">↗</span>
+                </a>
+              ))}
+            </nav>
+
+          </div>
         )}
 
         {onHome ? (
-          <a href="#conversation" className="navbar__cta">Ask VAJRA</a>
+          <a href="#conversation" className="navbar__cta">
+            Ask VAJRA
+          </a>
         ) : (
-          <Link to="/" className="navbar__cta">Back to site</Link>
+          <Link to="/" className="navbar__cta">
+            Back to site
+          </Link>
         )}
 
         <button
@@ -50,20 +79,31 @@ export default function Navbar() {
           <span />
           <span />
         </button>
+
       </div>
 
       {onHome && (
         <div className={`navbar__drawer ${open ? 'is-open' : ''}`}>
           {links.map((link) => (
-            <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+            >
               {link.label}
             </a>
           ))}
-          <a href="#conversation" onClick={() => setOpen(false)} className="navbar__drawer-cta">
+
+          <a
+            href="#conversation"
+            onClick={() => setOpen(false)}
+            className="navbar__drawer-cta"
+          >
             Ask VAJRA
           </a>
         </div>
       )}
+
     </header>
   );
 }
